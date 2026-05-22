@@ -8,14 +8,15 @@ import { useEffect, useState } from 'react';
 
 export function TopBar() {
   const { toggleAIPanel, aiPanelOpen, liveMode, toggleLiveMode } = useStore();
-  const [time, setTime] = useState(new Date());
+  const [time, setTime] = useState<Date | null>(null);
 
   useEffect(() => {
+    setTime(new Date());
     const t = setInterval(() => setTime(new Date()), 1000);
     return () => clearInterval(t);
   }, []);
 
-  const utc = time.toUTCString().slice(5, 22); // "21 May 2026 14:32:10"
+  const utc = time ? time.toUTCString().slice(5, 22) : '— — UTC';
 
   return (
     <header className="shrink-0 border-b border-[var(--rule)] bg-[var(--void)] z-20">
