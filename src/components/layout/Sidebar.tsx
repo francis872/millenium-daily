@@ -3,44 +3,43 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  LayoutDashboard, FileText, TrendingUp, Newspaper,
+  FileText, TrendingUp, Newspaper,
   Radio, Shield, Globe, Activity, Search, Settings, Bell,
-  ChevronLeft, ChevronRight, Network, Rss, FlaskConical, Zap, Building2,
+  ChevronLeft, ChevronRight, Rss, FlaskConical, Zap, Building2, UserPlus,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useStore } from '@/store/useStore';
 
 const navItems = [
   {
-    group: 'Intelligence',
+    group: 'Publishers',
     items: [
-      { label: 'Dashboard',    href: '/',          icon: LayoutDashboard, badge: null },
-      { label: 'Chroniq Feed', href: '/feed',       icon: Rss,             badge: 'NEW' },
-      { label: 'Atlas',        href: '/map',         icon: Globe,           badge: null },
-      { label: 'Live',         href: '/live',        icon: Radio,           badge: 'LIVE' },
+      { label: 'Directorio',   href: '/publishers',  icon: Building2,   badge: null },
+      { label: 'Registrarse',  href: '/join',         icon: UserPlus,    badge: null },
     ],
   },
   {
-    group: 'Network',
+    group: 'Intelligence',
     items: [
-      { label: 'Graph',        href: '/graph',       icon: Network,         badge: 'NEW' },
-      { label: 'Signals',      href: '/signals',     icon: Activity,        badge: null },
-      { label: 'Predictions',  href: '/predictions', icon: TrendingUp,      badge: null },
+      { label: 'Feed',         href: '/feed',         icon: Rss,         badge: null },
+      { label: 'Atlas',        href: '/map',          icon: Globe,       badge: null },
+      { label: 'Live',         href: '/live',         icon: Radio,       badge: 'LIVE' },
+      { label: 'Signals',      href: '/signals',      icon: Activity,    badge: null },
+      { label: 'Predictions',  href: '/predictions',  icon: TrendingUp,  badge: null },
     ],
   },
   {
     group: 'Research',
     items: [
-      { label: 'Research',     href: '/research',    icon: FlaskConical,    badge: null },
-      { label: 'Articles',     href: '/articles',    icon: Newspaper,       badge: null },
-      { label: 'AI Editor',    href: '/editor',      icon: FileText,        badge: null },
+      { label: 'Research',     href: '/research',     icon: FlaskConical, badge: null },
+      { label: 'Articles',     href: '/articles',     icon: Newspaper,    badge: null },
+      { label: 'AI Editor',    href: '/editor',       icon: FileText,     badge: null },
     ],
   },
   {
-    group: 'System',
+    group: 'Sistema',
     items: [
-      { label: 'Security',     href: '/security',    icon: Shield,          badge: null },
-      { label: 'Publishers',    href: '/publishers',  icon: Building2,        badge: null },
+      { label: 'Security',     href: '/security',     icon: Shield,      badge: null },
     ],
   },
 ];

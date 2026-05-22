@@ -191,7 +191,9 @@ export type PublisherCategory =
   | 'university'
   | 'ngo'
   | 'financial_media'
-  | 'broadcast';
+  | 'broadcast'
+  | 'intelligence_firm'
+  | 'academic';
 
 export interface LiveStream {
   id: string;
