@@ -193,6 +193,18 @@ export type PublisherCategory =
   | 'financial_media'
   | 'broadcast';
 
+export interface LiveStream {
+  id: string;
+  publisherId: string;
+  title: string;
+  description: string;
+  isLive: boolean;
+  startedAt?: string;
+  scheduledAt?: string;
+  viewers?: number;
+  thumbnail?: string;
+}
+
 export interface Publisher {
   id: string;
   name: string;
@@ -206,8 +218,15 @@ export interface Publisher {
   description: string;
   publishedCount: number;
   joinedAt: string;
-  nodeId?: string; // linked graph node
+  nodeId?: string;
   allowedTypes: FeedContentType[];
+  // Extended profile fields
+  followers: number;
+  website?: string;
+  founded?: string;
+  headquartersCity?: string;
+  specialties?: string[];
+  liveStreams?: LiveStream[];
 }
 
 export interface LiveFeedItem {

@@ -1,5 +1,6 @@
 'use client';
 import { useState, useRef } from 'react';
+import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AppShell } from '@/components/layout/AppShell';
 import { TrustBadge } from '@/components/ui/TrustBadge';
@@ -407,7 +408,8 @@ export default function PublishersPage() {
                 </div>
 
                 {/* Actions */}
-                <div className="p-3 mt-auto flex items-center gap-2">
+                <div className="p-3 mt-auto flex flex-col gap-2">
+                  <div className="flex items-center gap-2">
                   {pub.status === 'active' ? (
                     <button
                       onClick={() => setUploadTarget(pub)}
@@ -441,6 +443,14 @@ export default function PublishersPage() {
                       Reactivar
                     </button>
                   )}
+                  </div>
+                  <Link
+                    href={`/publishers/${pub.id}`}
+                    className="flex items-center justify-center gap-1.5 text-[9px] font-bold tracking-[0.1em] uppercase py-1.5 border border-[var(--rule)] text-[var(--ink-3)] hover:text-[var(--ink-2)] hover:border-[var(--rule-gold)] transition-colors"
+                  >
+                    <ChevronRight className="w-3 h-3" />
+                    Ver perfil
+                  </Link>
                 </div>
               </motion.div>
             ))}

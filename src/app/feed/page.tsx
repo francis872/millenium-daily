@@ -1,5 +1,6 @@
 'use client';
 import { useState, useRef } from 'react';
+import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AppShell } from '@/components/layout/AppShell';
 import { TrustBadge } from '@/components/ui/TrustBadge';
@@ -221,7 +222,7 @@ function FeedCard({ item, index }: { item: LiveFeedItem; index: number }) {
       {/* Footer */}
       <div className="flex items-center justify-between gap-2">
         <div className="flex items-center gap-3">
-          <span className="text-[10px] font-semibold text-[var(--gold)]">{item.publisherName}</span>
+          <Link href={`/publishers/${item.publisherId}`} className="text-[10px] font-semibold text-[var(--gold)] hover:underline">{item.publisherName}</Link>
           {item.author && (
             <span className="text-[10px] text-[var(--ink-3)]">{item.author}</span>
           )}

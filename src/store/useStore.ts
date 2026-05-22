@@ -15,6 +15,7 @@ interface DashboardState {
   // Publisher & Feed state
   feedItems: LiveFeedItem[];
   publishers: Publisher[];
+  followedPublisherIds: string[];
   selectedPdfUrl: string | null;
   selectedPdfTitle: string | null;
 
@@ -28,6 +29,8 @@ interface DashboardState {
   addFeedItem: (item: LiveFeedItem) => void;
   addPublisher: (pub: Publisher) => void;
   updatePublisherStatus: (id: string, status: Publisher['status']) => void;
+  followPublisher: (id: string) => void;
+  unfollowPublisher: (id: string) => void;
   openPdf: (url: string, title: string) => void;
   closePdf: () => void;
 }
@@ -44,6 +47,7 @@ export const useStore = create<DashboardState>((set) => ({
   searchQuery: '',
   feedItems: mockLiveFeed,
   publishers: mockPublishers,
+  followedPublisherIds: [],
   selectedPdfUrl: null,
   selectedPdfTitle: null,
 
@@ -59,6 +63,18 @@ export const useStore = create<DashboardState>((set) => ({
   updatePublisherStatus: (id, status) =>
     set((state) => ({
       publishers: state.publishers.map(p => p.id === id ? { ...p, status } : p),
+    })),
+  followPublisher: (id) =>
+    set((state) => ({
+      followedPublisherIds: state.followedPublisherIds.includes(id)
+        ? state.followedPublisherIds
+        : [...state.followedPublisherIds, id],
+      publishers: state.publishers.map(p => p.id === id ? { ...p, followers: p.followers + 1 } : p),
+    })),
+  unfollowPublisher: (id) =>
+    set((state) => ({
+      followedPublisherIds: state.followedPublisherIds.filter(f => f !== id),
+      publishers: state.publishers.map(p => p.id === id ? { ...p, followers: Math.max(0, p.followers - 1) } : p),
     })),
   openPdf: (url, title) => set({ selectedPdfUrl: url, selectedPdfTitle: title }),
   closePdf: () => set({ selectedPdfUrl: null, selectedPdfTitle: null }),
