@@ -34,7 +34,7 @@ export function AIResearchPanel() {
     {
       id: '0',
       role: 'assistant',
-      content: 'ARIA online. I\'m your AI intelligence analyst. I can detect misinformation, analyze geopolitical patterns, draft investigative leads, generate briefings, and process intelligence signals. How can I assist?',
+      content: 'CHRONIQ AI online. I am your cognitive intelligence analyst. I can detect misinformation, analyze geopolitical patterns, draft investigative leads, generate briefings, and process intelligence signals. How can I assist?',
       timestamp: new Date(),
     },
   ]);
@@ -74,14 +74,14 @@ export function AIResearchPanel() {
             <Brain className="w-3.5 h-3.5 text-[var(--gold)]" />
           </div>
           <div>
-            <div className="text-[12px] font-bold text-[var(--ink)] tracking-wider">ARIA</div>
+            <div className="text-[12px] font-bold text-[var(--ink)] tracking-wider">CHRONIQ AI</div>
             <div className="text-[9px] text-[var(--gold)] flex items-center gap-1 tracking-[0.15em] font-mono">
               <span className="w-1 h-1 rounded-full bg-[var(--gold)] pulse-dot" />
-              INTELLIGENCE ANALYST
+              COGNITIVE ANALYST
             </div>
           </div>
         </div>
-        <button aria-label="Close ARIA panel" onClick={toggleAIPanel} className="text-[var(--ink-3)] hover:text-[var(--ink)] transition-colors">
+        <button aria-label="Close CHRONIQ AI panel" onClick={toggleAIPanel} className="text-[var(--ink-3)] hover:text-[var(--ink)] transition-colors">
           <X className="w-4 h-4" />
         </button>
       </div>

@@ -24,8 +24,8 @@ const spaceMono = Space_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Millenium Daily — Intelligence Platform",
-  description: "The operating system for global information and intelligent journalism.",
+  title: "CHRONIQ — Cognitive Intelligence Network",
+  description: "Global cognitive media infrastructure. Realtime institutional intelligence, graph-powered trust networks, and AI-driven analysis.",
   icons: { icon: "/favicon.ico" },
 };
 

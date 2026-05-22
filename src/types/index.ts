@@ -119,3 +119,97 @@ export interface ChartDataPoint {
   value: number;
   label?: string;
 }
+
+// ── CHRONIQ Types ─────────────────────────────────────────────────────────────
+
+export type FeedContentType =
+  | 'news'
+  | 'pdf'
+  | 'scientific'
+  | 'latex_report'
+  | 'dataset'
+  | 'ai_report'
+  | 'signal'
+  | 'alert'
+  | 'live_stream'
+  | 'dashboard'
+  | 'investigation';
+
+export type TrustLevel = 'verified' | 'institutional' | 'analyst' | 'partner' | 'government' | 'pending';
+
+export interface ChroniqNode {
+  id: string;
+  label: string;
+  type: 'agency' | 'journalist' | 'researcher' | 'government' | 'university' | 'analyst' | 'institution';
+  trustScore: number;
+  verificationLevel: TrustLevel;
+  country: string;
+  connections: number;
+  credibilityLayer: string;
+  publishCount: number;
+  x?: number;
+  y?: number;
+}
+
+export interface ChroniqEdge {
+  source: string;
+  target: string;
+  type: 'trust' | 'verification' | 'collaboration' | 'reference' | 'publishing';
+  weight: number;
+}
+
+export interface ChroniqFeedItem {
+  id: string;
+  type: FeedContentType;
+  title: string;
+  excerpt: string;
+  author: string;
+  authorNode?: string; // graph node id
+  institution: string;
+  trustScore: number;
+  verificationLevel: TrustLevel;
+  timestamp: string;
+  region?: string;
+  tags: string[];
+  entities: string[];
+  relatedIds: string[];
+  severity?: 'critical' | 'high' | 'medium' | 'low';
+  hasLatex?: boolean;
+  hasPDF?: boolean;
+  hasChart?: boolean;
+  signalStrength?: number;
+  credibilityScore: number;
+  views: number;
+  propagationScore: number;
+}
+
+export interface AnomalySignal {
+  id: string;
+  type: 'financial' | 'geopolitical' | 'narrative' | 'social' | 'market' | 'security';
+  title: string;
+  description: string;
+  severity: 'critical' | 'high' | 'medium' | 'low';
+  confidence: number;
+  detectedAt: string;
+  region: string;
+  signalScore: number;
+  escalationProbability: number;
+  relatedEntities: string[];
+  timeline: { t: string; v: number }[];
+}
+
+export interface ResearchPaper {
+  id: string;
+  title: string;
+  authors: string[];
+  institution: string;
+  abstract: string;
+  hasLatex: boolean;
+  hasPDF: boolean;
+  citationCount: number;
+  publishedAt: string;
+  category: string;
+  trustScore: number;
+  doi?: string;
+  equations?: string[];
+}

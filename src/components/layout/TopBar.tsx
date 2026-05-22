@@ -51,7 +51,7 @@ export function TopBar() {
           <motion.button
             onClick={toggleAIPanel}
             whileTap={{ scale: 0.96 }}
-            aria-label="Toggle ARIA panel"
+            aria-label="Toggle CHRONIQ AI panel"
             className={cn(
               'flex items-center gap-1.5 text-[10px] font-bold tracking-[0.18em] uppercase px-2.5 py-1 border transition-all',
               aiPanelOpen
@@ -60,7 +60,7 @@ export function TopBar() {
             )}
           >
             <Brain className="w-3 h-3" />
-            ARIA
+            CHRONIQ AI
           </motion.button>
         </div>
       </div>

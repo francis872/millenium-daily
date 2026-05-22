@@ -1,4 +1,6 @@
-'use client';
+import { writeFileSync } from 'fs';
+
+const content = `'use client';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -211,3 +213,7 @@ export function Sidebar() {
     </motion.aside>
   );
 }
+`;
+
+writeFileSync('src/components/layout/Sidebar.tsx', content, 'utf8');
+console.log('Done: ' + content.length + ' chars');

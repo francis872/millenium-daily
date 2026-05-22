@@ -6,6 +6,11 @@ import {
   PredictionModel,
   AIInsight,
   ChartDataPoint,
+  ChroniqNode,
+  ChroniqEdge,
+  ChroniqFeedItem,
+  AnomalySignal,
+  ResearchPaper,
 } from '@/types';
 
 export const mockAuthors = [
@@ -336,6 +341,179 @@ export const mockAIInsights: AIInsight[] = [
     content: 'Novel AI-generated content network detected across 340+ social accounts. Campaign targeting central bank credibility in 4 countries. Fingerprint matches infrastructure used in 2024 election interference operations.',
     confidence: 0.91,
     timestamp: new Date(Date.now() - 90 * 60 * 1000).toISOString(),
+  },
+];
+
+// ── CHRONIQ Graph Network ─────────────────────────────────────────────────────
+
+export const mockGraphNodes: ChroniqNode[] = [
+  { id: 'n-001', label: 'Reuters Institute', type: 'institution', trustScore: 98, verificationLevel: 'institutional', country: 'UK', connections: 47, credibilityLayer: 'Tier-1 Media Authority', publishCount: 4821, x: 420, y: 180 },
+  { id: 'n-002', label: 'MIT Media Lab', type: 'university', trustScore: 97, verificationLevel: 'institutional', country: 'USA', connections: 63, credibilityLayer: 'Scientific Authority', publishCount: 2340, x: 250, y: 280 },
+  { id: 'n-003', label: 'ARIA Intelligence', type: 'analyst', trustScore: 96, verificationLevel: 'partner', country: 'Network', connections: 91, credibilityLayer: 'AI-Verified Intelligence', publishCount: 8120, x: 380, y: 320 },
+  { id: 'n-004', label: 'Marcus Chen', type: 'journalist', trustScore: 94, verificationLevel: 'verified', country: 'USA', connections: 28, credibilityLayer: 'Senior Correspondent', publishCount: 892, x: 560, y: 260 },
+  { id: 'n-005', label: 'Elena Vasquez', type: 'journalist', trustScore: 92, verificationLevel: 'verified', country: 'ESP', connections: 19, credibilityLayer: 'Investigative Journalist', publishCount: 441, x: 200, y: 180 },
+  { id: 'n-006', label: 'CERN Research', type: 'university', trustScore: 99, verificationLevel: 'institutional', country: 'CH', connections: 55, credibilityLayer: 'Scientific Peak Authority', publishCount: 1876, x: 140, y: 350 },
+  { id: 'n-007', label: 'EU Commission', type: 'government', trustScore: 89, verificationLevel: 'government', country: 'EU', connections: 72, credibilityLayer: 'Government Authority', publishCount: 3200, x: 310, y: 140 },
+  { id: 'n-008', label: 'James Okafor', type: 'journalist', trustScore: 91, verificationLevel: 'verified', country: 'NGA', connections: 14, credibilityLayer: 'Data Journalist', publishCount: 328, x: 490, y: 380 },
+  { id: 'n-009', label: 'Stanford AI Lab', type: 'university', trustScore: 98, verificationLevel: 'institutional', country: 'USA', connections: 48, credibilityLayer: 'Scientific Authority', publishCount: 1543, x: 620, y: 180 },
+  { id: 'n-010', label: 'Interpol Liaison', type: 'government', trustScore: 95, verificationLevel: 'government', country: 'INT', connections: 33, credibilityLayer: 'Intelligence Partner', publishCount: 287, x: 680, y: 340 },
+];
+
+export const mockGraphEdges: ChroniqEdge[] = [
+  { source: 'n-001', target: 'n-003', type: 'trust', weight: 0.95 },
+  { source: 'n-002', target: 'n-003', type: 'verification', weight: 0.88 },
+  { source: 'n-003', target: 'n-004', type: 'collaboration', weight: 0.76 },
+  { source: 'n-003', target: 'n-005', type: 'publishing', weight: 0.71 },
+  { source: 'n-006', target: 'n-002', type: 'reference', weight: 0.92 },
+  { source: 'n-007', target: 'n-001', type: 'verification', weight: 0.84 },
+  { source: 'n-004', target: 'n-001', type: 'publishing', weight: 0.89 },
+  { source: 'n-008', target: 'n-003', type: 'collaboration', weight: 0.68 },
+  { source: 'n-009', target: 'n-002', type: 'reference', weight: 0.91 },
+  { source: 'n-010', target: 'n-007', type: 'trust', weight: 0.87 },
+  { source: 'n-005', target: 'n-007', type: 'reference', weight: 0.72 },
+  { source: 'n-009', target: 'n-003', type: 'verification', weight: 0.90 },
+];
+
+// ── CHRONIQ Feed ─────────────────────────────────────────────────────────────
+
+export const mockChroniqFeed: ChroniqFeedItem[] = [
+  {
+    id: 'cf-001', type: 'signal', title: 'CRITICAL: EU Energy Grid Anomaly Detected — Cross-Border Cascade Risk',
+    excerpt: 'ARIA anomaly detection flagged simultaneous load fluctuations across 7 EU member states. Pattern consistent with coordinated infrastructure stress test or precursor event.',
+    author: 'ARIA Intelligence', institution: 'CHRONIQ Intelligence Network', trustScore: 96,
+    verificationLevel: 'partner', timestamp: new Date(Date.now() - 4 * 60000).toISOString(),
+    region: 'Europe', tags: ['energy', 'infrastructure', 'critical'], entities: ['EU Commission', 'Entsoe', 'Germany'],
+    relatedIds: ['cf-005', 'cf-009'], severity: 'critical', signalStrength: 0.94, credibilityScore: 96, views: 4821, propagationScore: 0.89,
+  },
+  {
+    id: 'cf-002', type: 'scientific', title: 'Quantum-Resistant Cryptography: NIST Final Standards Impact Analysis',
+    excerpt: 'This paper analyzes the deployment timeline and strategic implications of NIST post-quantum cryptographic standards for sovereign digital infrastructure.',
+    author: 'Dr. Yuki Tanaka', institution: 'MIT Media Lab', trustScore: 97,
+    verificationLevel: 'institutional', timestamp: new Date(Date.now() - 28 * 60000).toISOString(),
+    region: 'Global', tags: ['cryptography', 'quantum', 'security'], entities: ['NIST', 'MIT', 'NSA'],
+    relatedIds: ['cf-007'], severity: 'high', hasLatex: true, hasPDF: true, credibilityScore: 97, views: 2341, propagationScore: 0.76,
+  },
+  {
+    id: 'cf-003', type: 'ai_report', title: 'ARIA Weekly Intelligence Synthesis: South China Sea — Week 21',
+    excerpt: 'Automated synthesis of 847 intelligence signals across naval positioning, diplomatic cables, and economic indicators. Escalation probability: 34% (↑8pp vs prior week).',
+    author: 'ARIA Intelligence', institution: 'CHRONIQ Intelligence Network', trustScore: 96,
+    verificationLevel: 'partner', timestamp: new Date(Date.now() - 45 * 60000).toISOString(),
+    region: 'Asia-Pacific', tags: ['geopolitics', 'naval', 'china'], entities: ['PLA Navy', 'USS Ronald Reagan', 'Taiwan Strait'],
+    relatedIds: ['cf-001', 'cf-006'], severity: 'high', hasChart: true, credibilityScore: 94, views: 8921, propagationScore: 0.91,
+  },
+  {
+    id: 'cf-004', type: 'pdf', title: 'IMF World Economic Outlook — Q2 2026 Supplementary Dataset',
+    excerpt: 'Full dataset release: GDP projections, inflation vectors, and debt sustainability analysis for 189 member countries. Revised global growth: 2.8% (−0.3pp).',
+    author: 'IMF Research', institution: 'International Monetary Fund', trustScore: 99,
+    verificationLevel: 'institutional', timestamp: new Date(Date.now() - 2 * 3600000).toISOString(),
+    region: 'Global', tags: ['economics', 'imf', 'gdp'], entities: ['IMF', 'World Bank', 'Federal Reserve'],
+    relatedIds: ['cf-008'], hasPDF: true, hasChart: true, credibilityScore: 99, views: 15420, propagationScore: 0.95,
+  },
+  {
+    id: 'cf-005', type: 'investigation', title: 'Shadow Infrastructure: How State Actors Route Cyber Operations Through Neutral Cloud Providers',
+    excerpt: 'A 6-month OSINT investigation mapping the command-and-control infrastructure of three nation-state threat actors through compromised commercial cloud services.',
+    author: 'Elena Vasquez', institution: 'Reuters Institute', trustScore: 98,
+    verificationLevel: 'verified', timestamp: new Date(Date.now() - 4 * 3600000).toISOString(),
+    region: 'Global', tags: ['cybersecurity', 'osint', 'statecraft'], entities: ['AWS', 'Azure', 'APT-41'],
+    relatedIds: ['cf-001'], severity: 'critical', hasPDF: true, credibilityScore: 95, views: 19870, propagationScore: 0.88,
+  },
+  {
+    id: 'cf-006', type: 'news', title: 'Taiwan Semiconductor Export Controls: Emergency Session Convened',
+    excerpt: 'TSMC emergency board session called following US Treasury guidance on advanced node exports. Market impact: SOXX −3.2% pre-market.',
+    author: 'Marcus Chen', institution: 'Reuters Institute', trustScore: 98,
+    verificationLevel: 'verified', timestamp: new Date(Date.now() - 5 * 3600000).toISOString(),
+    region: 'Asia-Pacific', tags: ['semiconductors', 'taiwan', 'exports'], entities: ['TSMC', 'NVIDIA', 'US Treasury'],
+    relatedIds: ['cf-003', 'cf-004'], severity: 'high', credibilityScore: 96, views: 31200, propagationScore: 0.93,
+  },
+  {
+    id: 'cf-007', type: 'latex_report', title: 'Stochastic Modeling of Cascade Failure Propagation in Interconnected Critical Infrastructure',
+    excerpt: 'We present a novel stochastic differential equation framework for modeling cascade failure propagation in interdependent infrastructure networks.',
+    author: 'Prof. Andreas Weber', institution: 'ETH Zürich', trustScore: 97,
+    verificationLevel: 'institutional', timestamp: new Date(Date.now() - 8 * 3600000).toISOString(),
+    region: 'Europe', tags: ['mathematics', 'infrastructure', 'risk'], entities: ['ETH Zürich', 'EPFL', 'IEEE'],
+    relatedIds: ['cf-001', 'cf-002'], hasLatex: true, hasPDF: true, credibilityScore: 97, views: 3241, propagationScore: 0.72,
+  },
+  {
+    id: 'cf-008', type: 'dataset', title: 'CHRONIQ Financial Stress Index — Real-Time Composite (Q2 2026)',
+    excerpt: 'Composite index aggregating 140 financial stress indicators across sovereign debt, interbank lending, currency volatility, and commodity markets.',
+    author: 'ARIA Intelligence', institution: 'CHRONIQ Intelligence Network', trustScore: 96,
+    verificationLevel: 'partner', timestamp: new Date(Date.now() - 12 * 3600000).toISOString(),
+    region: 'Global', tags: ['finance', 'stress-index', 'markets'], entities: ['Federal Reserve', 'ECB', 'BIS'],
+    relatedIds: ['cf-004', 'cf-006'], hasChart: true, credibilityScore: 93, views: 7651, propagationScore: 0.84,
+  },
+];
+
+// ── CHRONIQ Anomaly Signals ───────────────────────────────────────────────────
+
+export const mockAnomalySignals: AnomalySignal[] = [
+  {
+    id: 'sig-001', type: 'geopolitical', title: 'SCS Naval Concentration — Triple Fleet Convergence',
+    description: 'SATINT analysis shows unprecedented convergence of three carrier battle groups at contested maritime boundary. No scheduled exercises logged.',
+    severity: 'critical', confidence: 0.91, detectedAt: new Date(Date.now() - 2 * 60000).toISOString(),
+    region: 'South China Sea', signalScore: 94, escalationProbability: 0.41,
+    relatedEntities: ['PLA Navy', 'USS Ronald Reagan', 'JMSDF'],
+    timeline: [{ t: '-6h', v: 22 }, { t: '-4h', v: 38 }, { t: '-2h', v: 61 }, { t: '-1h', v: 78 }, { t: 'now', v: 94 }],
+  },
+  {
+    id: 'sig-002', type: 'financial', title: 'Coordinated Short Position — European Sovereign Debt',
+    description: 'Unusual clustering of short positions across Italian and Greek sovereign bonds. Pattern consistent with coordinated institutional strategy.',
+    severity: 'high', confidence: 0.87, detectedAt: new Date(Date.now() - 18 * 60000).toISOString(),
+    region: 'Europe', signalScore: 81, escalationProbability: 0.28,
+    relatedEntities: ['ECB', 'BTP Italy', 'GGBs Greece'],
+    timeline: [{ t: '-6h', v: 34 }, { t: '-4h', v: 41 }, { t: '-2h', v: 58 }, { t: '-1h', v: 71 }, { t: 'now', v: 81 }],
+  },
+  {
+    id: 'sig-003', type: 'narrative', title: 'Coordinated Disinformation Vector — Central Bank Credibility',
+    description: '340+ accounts amplifying identical narrative attacking ECB/Fed independence. Network fingerprint matches prior state-actor infrastructure.',
+    severity: 'high', confidence: 0.89, detectedAt: new Date(Date.now() - 35 * 60000).toISOString(),
+    region: 'Global', signalScore: 78, escalationProbability: 0.22,
+    relatedEntities: ['ECB', 'Federal Reserve', 'Twitter/X'],
+    timeline: [{ t: '-6h', v: 15 }, { t: '-4h', v: 28 }, { t: '-2h', v: 52 }, { t: '-1h', v: 67 }, { t: 'now', v: 78 }],
+  },
+  {
+    id: 'sig-004', type: 'market', title: 'Semiconductor Supply Chain Disruption Alert',
+    description: 'AI supply chain analysis detects 3σ deviation in rare earth shipment patterns from 4 key extraction zones. 60-90 day impact window.',
+    severity: 'medium', confidence: 0.76, detectedAt: new Date(Date.now() - 2 * 3600000).toISOString(),
+    region: 'Asia', signalScore: 64, escalationProbability: 0.18,
+    relatedEntities: ['TSMC', 'ASML', 'Lynas Rare Earths'],
+    timeline: [{ t: '-6h', v: 28 }, { t: '-4h', v: 35 }, { t: '-2h', v: 48 }, { t: '-1h', v: 57 }, { t: 'now', v: 64 }],
+  },
+  {
+    id: 'sig-005', type: 'security', title: 'Zero-Day Exploit — Critical Infrastructure SCADA Systems',
+    description: 'CVE-2026-18947 actively exploited in energy sector SCADA systems. 14 confirmed incidents across 3 continents in 6-hour window.',
+    severity: 'critical', confidence: 0.95, detectedAt: new Date(Date.now() - 4 * 3600000).toISOString(),
+    region: 'Global', signalScore: 97, escalationProbability: 0.55,
+    relatedEntities: ['Siemens SCADA', 'CISA', 'Schneider Electric'],
+    timeline: [{ t: '-6h', v: 45 }, { t: '-4h', v: 73 }, { t: '-2h', v: 88 }, { t: '-1h', v: 93 }, { t: 'now', v: 97 }],
+  },
+];
+
+// ── CHRONIQ Research Papers ────────────────────────────────────────────────────
+
+export const mockResearchPapers: ResearchPaper[] = [
+  {
+    id: 'rp-001', title: 'Adversarial Robustness in Large Language Models Under Distribution Shift',
+    authors: ['Dr. Yuki Tanaka', 'Prof. Sarah Mitchell'], institution: 'MIT Media Lab',
+    abstract: 'We investigate the robustness of instruction-tuned LLMs under systematic adversarial distribution shift, introducing a novel threat model $\\mathcal{T}_{\\epsilon}$ parameterized by perturbation radius $\\epsilon$ in the embedding space.',
+    hasLatex: true, hasPDF: true, citationCount: 234, publishedAt: '2026-04-15',
+    category: 'AI Safety', trustScore: 97, doi: '10.48550/arXiv.2604.18234',
+    equations: ['\\mathcal{T}_{\\epsilon}(x) = \\{x\' : \\|x\' - x\\|_2 \\leq \\epsilon\\}', 'L_{\\text{adv}} = \\max_{\\delta \\in \\mathcal{T}} \\mathcal{L}(f(x + \\delta), y)'],
+  },
+  {
+    id: 'rp-002', title: 'Stochastic Cascade Failure in Interdependent Infrastructure Networks',
+    authors: ['Prof. Andreas Weber', 'Dr. Lena Fischer'], institution: 'ETH Zürich',
+    abstract: 'A mathematical framework for cascade failure propagation using coupled stochastic differential equations. The failure probability follows a modified Galton-Watson branching process.',
+    hasLatex: true, hasPDF: true, citationCount: 89, publishedAt: '2026-03-22',
+    category: 'Infrastructure Risk', trustScore: 97, doi: '10.1007/s11749-026-0891-3',
+    equations: ['\\frac{dF_i}{dt} = -\\alpha F_i + \\beta \\sum_{j \\in N(i)} A_{ij} F_j + \\sigma W_t', 'P(\\text{cascade}) = 1 - e^{-\\lambda n^{\\gamma}}'],
+  },
+  {
+    id: 'rp-003', title: 'Graph-Theoretic Trust Propagation in Decentralized Media Networks',
+    authors: ['Prof. James Liu', 'Dr. Amara Diallo'], institution: 'Stanford AI Lab',
+    abstract: 'We model institutional trust propagation as a random walk on a weighted directed graph $G = (V, E, w)$ where edge weights encode credibility relationships.',
+    hasLatex: true, hasPDF: true, citationCount: 156, publishedAt: '2026-02-10',
+    category: 'Network Theory', trustScore: 98, doi: '10.1145/3589334.3645498',
+    equations: ['\\pi_v = \\frac{1-d}{|V|} + d \\sum_{u \\in B(v)} \\frac{w_{u,v}}{C(u)} \\pi_u', 'T(v) = \\sum_{k=0}^{\\infty} \\alpha^k (P^k)_v \\cdot t_0'],
   },
 ];
 

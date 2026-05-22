@@ -35,10 +35,10 @@ export default function MapPage() {
       <div className="p-4 space-y-4">
         <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}>
           <div className="flex items-center gap-2 mb-0.5">
-            <Globe className="w-5 h-5 text-cyan-400" />
-            <h1 className="text-xl font-bold text-white">Global Risk Map</h1>
+            <Globe className="w-5 h-5 text-[var(--gold)]" />
+            <h1 className="text-xl font-bold text-[var(--ink)]" style={{ fontFamily: 'var(--font-serif)' }}>CHRONIQ Atlas</h1>
           </div>
-          <p className="text-xs text-slate-400">Geopolitical tension monitoring · Regional conflict analysis · Escalation probability</p>
+          <p className="text-xs text-[var(--ink-3)]">Geopolitical tension monitoring · Regional conflict analysis · Escalation probability</p>
         </motion.div>
 
         {/* Map visualization */}

@@ -44,10 +44,10 @@ export default function DashboardPage() {
                 className="text-3xl font-bold leading-none tracking-tight text-[var(--ink)] mb-1"
                 style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic' }}
               >
-                Intelligence Briefing
+                Chroniq Intelligence Briefing
               </h1>
               <p className="text-[11px] text-[var(--ink-3)] tracking-wide">
-                Global intelligence overview Â· AI-enhanced signals Â· Real-time analysis
+                Global cognitive intelligence · Graph-powered trust networks · Real-time analysis
               </p>
             </div>
             <div className="text-right shrink-0 hidden md:block">

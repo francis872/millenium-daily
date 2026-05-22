@@ -74,9 +74,9 @@ export default function ResearchPage() {
         {/* Header */}
         <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}>
           <div className="flex items-center gap-2 mb-0.5">
-            <Brain className="w-5 h-5 text-purple-400" />
-            <h1 className="text-xl font-bold text-white">AI Research Assistant</h1>
-            <span className="text-[10px] font-bold tracking-widest text-purple-400 px-2 py-0.5 rounded bg-purple-500/10 border border-purple-500/20">ARIA v2</span>
+            <Brain className="w-5 h-5 text-[var(--gold)]" />
+            <h1 className="text-xl font-bold text-[var(--ink)]" style={{ fontFamily: 'var(--font-serif)' }}>CHRONIQ Research</h1>
+            <span className="text-[10px] font-bold tracking-widest text-[var(--gold)] px-2 py-0.5 border border-[var(--rule-gold)] bg-[var(--gold-dim)]">Intelligence Papers</span>
           </div>
           <p className="text-xs text-slate-400">Intelligent document analysis · OSINT synthesis · Narrative detection · Citation generation</p>
         </motion.div>

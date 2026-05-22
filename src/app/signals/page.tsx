@@ -14,10 +14,10 @@ export default function SignalsPage() {
       <div className="p-4 space-y-4">
         <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}>
           <div className="flex items-center gap-2 mb-0.5">
-            <Activity className="w-5 h-5 text-emerald-400" />
-            <h1 className="text-xl font-bold text-white">Market Signals</h1>
+            <Activity className="w-5 h-5 text-[var(--gold)]" />
+            <h1 className="text-xl font-bold text-[var(--ink)]" style={{ fontFamily: 'var(--font-serif)' }}>CHRONIQ Signals</h1>
           </div>
-          <p className="text-xs text-slate-400">AI-synthesized financial intelligence · Cross-asset correlation · Macro regime detection</p>
+          <p className="text-xs text-[var(--ink-3)]">Anomaly Detection Matrix · AI-synthesized intelligence · Cross-asset correlation</p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
