@@ -1,10 +1,7 @@
 'use client';
-export const dynamic = 'force-dynamic';
 import { AppShell } from '@/components/layout/AppShell';
-import { motion } from 'framer-motion';
 import { mockGeopoliticalAlerts } from '@/data/mockData';
 import { GlowCard, SeverityBadge } from '@/components/ui/GlowCard';
-import { cn } from '@/lib/utils';
 import { Globe, AlertTriangle, TrendingUp } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
@@ -33,13 +30,13 @@ export default function MapPage() {
   return (
     <AppShell>
       <div className="p-4 space-y-4">
-        <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}>
+        <div className="animate-in fade-in duration-300">
           <div className="flex items-center gap-2 mb-0.5">
             <Globe className="w-5 h-5 text-[var(--gold)]" />
             <h1 className="text-xl font-bold text-[var(--ink)]" style={{ fontFamily: 'var(--font-serif)' }}>CHRONIQ Atlas</h1>
           </div>
           <p className="text-xs text-[var(--ink-3)]">Geopolitical tension monitoring · Regional conflict analysis · Escalation probability</p>
-        </motion.div>
+        </div>
 
         {/* Map visualization */}
         <GlowCard glow="cyan" className="overflow-hidden">
@@ -70,19 +67,14 @@ export default function MapPage() {
             </svg>
 
             {/* Risk markers */}
-            {REGIONS.map((region, i) => (
-              <div
-                key={region.id}
-                className="absolute -translate-x-1/2 -translate-y-1/2"
-                style={{ left: `${region.x}%`, top: `${region.y}%` }}
-              >
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: i * 0.1 }}
-                  className="flex flex-col items-center"
+            {REGIONS.map((region) => (
+                <div
+                  key={region.id}
+                  className="absolute -translate-x-1/2 -translate-y-1/2"
+                  style={{ left: `${region.x}%`, top: `${region.y}%` }}
                 >
-                <div className="relative w-4 h-4">
+                  <div className="flex flex-col items-center">
+                  <div className="relative w-4 h-4">
                   {/* Pulse ring */}
                   {region.risk === 'critical' && (
                     <div
@@ -101,8 +93,8 @@ export default function MapPage() {
                 <div className="mt-1 text-[9px] text-slate-400 bg-slate-900/80 px-1 rounded whitespace-nowrap">
                   {region.label}
                 </div>
-                </motion.div>
-              </div>
+                  </div>
+                </div>
             ))}
 
             {/* Legend */}
@@ -116,17 +108,13 @@ export default function MapPage() {
             </div>
           </div>
 
-          {/* Alerts list below map */}
           <div className="divide-y divide-slate-800/40">
             {mockGeopoliticalAlerts.slice(0, 4).map((alert, i) => (
-              <motion.div
+              <div
                 key={alert.id}
-                initial={{ opacity: 0, x: -8 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.4 + i * 0.06 }}
                 className="flex items-center gap-3 px-4 py-3 hover:bg-slate-800/20 transition-colors"
               >
-                <SeverityBadge severity={alert.riskLevel as any} />
+                <SeverityBadge severity={alert.riskLevel >= 85 ? 'critical' : alert.riskLevel >= 70 ? 'high' : alert.riskLevel >= 50 ? 'medium' : 'low'} />
                 <div className="flex-1 min-w-0">
                   <div className="text-xs font-semibold text-slate-200 truncate">{alert.region}</div>
                   <div className="text-[11px] text-slate-400 truncate">{alert.description}</div>
@@ -135,7 +123,7 @@ export default function MapPage() {
                   <TrendingUp className="w-3 h-3" />
                   <span className="font-mono">{Math.round(alert.escalationProbability * 100)}%</span>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </GlowCard>
