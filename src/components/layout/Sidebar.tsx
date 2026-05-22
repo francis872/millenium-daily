@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   LayoutDashboard, FileText, TrendingUp, Newspaper,
   Radio, Shield, Globe, Activity, Search, Settings, Bell,
-  ChevronLeft, ChevronRight, Network, Rss, FlaskConical, Zap,
+  ChevronLeft, ChevronRight, Network, Rss, FlaskConical, Zap, Building2,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useStore } from '@/store/useStore';
@@ -40,6 +40,7 @@ const navItems = [
     group: 'System',
     items: [
       { label: 'Security',     href: '/security',    icon: Shield,          badge: null },
+      { label: 'Publishers',    href: '/publishers',  icon: Building2,        badge: null },
     ],
   },
 ];

@@ -183,6 +183,55 @@ export interface ChroniqFeedItem {
   propagationScore: number;
 }
 
+export type PublisherCategory =
+  | 'news_agency'
+  | 'newspaper'
+  | 'research_institute'
+  | 'government'
+  | 'university'
+  | 'ngo'
+  | 'financial_media'
+  | 'broadcast';
+
+export interface Publisher {
+  id: string;
+  name: string;
+  shortName: string;
+  country: string;
+  flag: string;
+  category: PublisherCategory;
+  trustScore: number;
+  verificationLevel: TrustLevel;
+  status: 'active' | 'pending' | 'suspended';
+  description: string;
+  publishedCount: number;
+  joinedAt: string;
+  nodeId?: string; // linked graph node
+  allowedTypes: FeedContentType[];
+}
+
+export interface LiveFeedItem {
+  id: string;
+  type: FeedContentType;
+  title: string;
+  excerpt: string;
+  publisherId: string;
+  publisherName: string;
+  author: string;
+  trustScore: number;
+  verificationLevel: TrustLevel;
+  timestamp: string;
+  region?: string;
+  tags: string[];
+  severity?: 'critical' | 'high' | 'medium' | 'low';
+  hasPDF?: boolean;
+  pdfUrl?: string;       // blob URL for uploaded PDFs
+  hasLatex?: boolean;
+  latexContent?: string;
+  credibilityScore: number;
+  views: number;
+}
+
 export interface AnomalySignal {
   id: string;
   type: 'financial' | 'geopolitical' | 'narrative' | 'social' | 'market' | 'security';

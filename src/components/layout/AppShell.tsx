@@ -3,6 +3,7 @@ import { ReactNode } from 'react';
 import { Sidebar } from './Sidebar';
 import { TopBar } from './TopBar';
 import { AIResearchPanel } from '@/components/ai/ResearchPanel';
+import { PdfViewerModal } from '@/components/ui/PdfViewerModal';
 import { useStore } from '@/store/useStore';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -33,6 +34,7 @@ export function AppShell({ children }: { children: ReactNode }) {
           </AnimatePresence>
         </div>
       </div>
+      <PdfViewerModal />
     </div>
   );
 }

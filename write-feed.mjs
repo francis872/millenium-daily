@@ -1,4 +1,8 @@
-'use client';
+import { writeFileSync, mkdirSync } from 'fs';
+
+mkdirSync('src/app/feed', { recursive: true });
+
+const feedPage = `'use client';
 import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AppShell } from '@/components/layout/AppShell';
@@ -354,3 +358,7 @@ export default function FeedPage() {
     </AppShell>
   );
 }
+`;
+
+writeFileSync('src/app/feed/page.tsx', feedPage, 'utf8');
+console.log('feed page:', feedPage.length);
