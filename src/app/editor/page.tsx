@@ -362,10 +362,10 @@ export default function EditorPage() {
             <div className="p-4 border-t border-slate-800/40">
               <div className="text-[10px] font-bold tracking-widest text-slate-500 uppercase mb-2">LaTeX Quick Ref</div>
               <div className="space-y-1 font-mono text-[10px] text-slate-400">
-                <div>$x^2 + y^2 = z^2$ → inline</div>
-                <div>$$\sum_{{n=1}}^{{\infty}}$$ → block</div>
-                <div>$\frac{{a}}{{b}}$ → fraction</div>
-                <div>$\sqrt{{x}}$ → root</div>
+                <div>{'$x^2 + y^2 = z^2$'} {'\u2192'} inline</div>
+                <div>{'$$\\sum_{n=1}^{\\infty}$$'} {'\u2192'} block</div>
+                <div>{'$\\frac{a}{b}$'} {'\u2192'} fraction</div>
+                <div>{'$\\sqrt{x}$'} {'\u2192'} root</div>
               </div>
             </div>
           </div>

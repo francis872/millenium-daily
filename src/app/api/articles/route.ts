@@ -13,7 +13,7 @@ export async function GET(request: NextRequest) {
   }
   if (q) {
     articles = articles.filter(
-      a => a.title.toLowerCase().includes(q) || a.summary.toLowerCase().includes(q)
+      a => a.title.toLowerCase().includes(q) || a.excerpt.toLowerCase().includes(q)
     );
   }
 

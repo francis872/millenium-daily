@@ -77,13 +77,13 @@ export default function SignalsPage() {
                     <div>
                       <div className="text-[10px] text-slate-500 mb-0.5">Bullish signal</div>
                       <div className="h-1.5 bg-slate-700/50 rounded-full">
-                        <div className="h-full bg-emerald-500 rounded-full transition-all" style={{ width: `${signal.bullishScore * 100}%` }} />
+                        <div className="h-full bg-emerald-500 rounded-full transition-all" style={{ width: `${signal.signal === 'bullish' ? 75 : signal.signal === 'neutral' ? 50 : 25}%` }} />
                       </div>
                     </div>
                     <div>
                       <div className="text-[10px] text-slate-500 mb-0.5">Bearish signal</div>
                       <div className="h-1.5 bg-slate-700/50 rounded-full">
-                        <div className="h-full bg-red-500 rounded-full transition-all" style={{ width: `${signal.bearishScore * 100}%` }} />
+                        <div className="h-full bg-red-500 rounded-full transition-all" style={{ width: `${signal.signal === 'bearish' ? 75 : signal.signal === 'neutral' ? 50 : 25}%` }} />
                       </div>
                     </div>
                   </div>
@@ -96,7 +96,7 @@ export default function SignalsPage() {
 
                   <div className="mt-2 flex items-center gap-1 text-[10px] text-slate-500">
                     <BarChart2 className="w-3 h-3" />
-                    Vol: {signal.volume}M · Updated: {signal.timestamp}
+                    Vol: {signal.volume}M · Updated: 15m ago
                   </div>
                 </motion.div>
               </GlowCard>

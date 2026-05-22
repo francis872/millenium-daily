@@ -1,10 +1,12 @@
 'use client';
+export const dynamic = 'force-dynamic';
 import { AppShell } from '@/components/layout/AppShell';
 import { motion } from 'framer-motion';
 import { mockGeopoliticalAlerts } from '@/data/mockData';
 import { GlowCard, SeverityBadge } from '@/components/ui/GlowCard';
 import { cn } from '@/lib/utils';
 import { Globe, AlertTriangle, TrendingUp } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 // Simplified world map placeholder with region markers
 const REGIONS = [
@@ -25,6 +27,9 @@ const riskColors: Record<string, string> = {
 };
 
 export default function MapPage() {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => { setMounted(true); }, []);
+  if (!mounted) return <AppShell><div className="p-4 text-slate-400 text-sm">Loading...</div></AppShell>;
   return (
     <AppShell>
       <div className="p-4 space-y-4">
@@ -66,14 +71,17 @@ export default function MapPage() {
 
             {/* Risk markers */}
             {REGIONS.map((region, i) => (
-              <motion.div
+              <div
                 key={region.id}
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: i * 0.1, type: 'spring' }}
-                className="absolute flex flex-col items-center"
-                style={{ left: `${region.x}%`, top: `${region.y}%`, transform: 'translate(-50%, -50%)' }}
+                className="absolute -translate-x-1/2 -translate-y-1/2"
+                style={{ left: `${region.x}%`, top: `${region.y}%` }}
               >
+                <motion.div
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: i * 0.1, type: 'spring' }}
+                  className="flex flex-col items-center"
+                >
                 <div className="relative">
                   {/* Pulse ring */}
                   {region.risk === 'critical' && (
@@ -93,7 +101,8 @@ export default function MapPage() {
                 <div className="mt-1 text-[9px] text-slate-400 bg-slate-900/80 px-1 rounded whitespace-nowrap">
                   {region.label}
                 </div>
-              </motion.div>
+                </motion.div>
+              </div>
             ))}
 
             {/* Legend */}
@@ -120,7 +129,7 @@ export default function MapPage() {
                 <SeverityBadge severity={alert.riskLevel as any} />
                 <div className="flex-1 min-w-0">
                   <div className="text-xs font-semibold text-slate-200 truncate">{alert.region}</div>
-                  <div className="text-[11px] text-slate-400 truncate">{alert.title}</div>
+                  <div className="text-[11px] text-slate-400 truncate">{alert.description}</div>
                 </div>
                 <div className="flex items-center gap-1 text-xs text-orange-400">
                   <TrendingUp className="w-3 h-3" />
