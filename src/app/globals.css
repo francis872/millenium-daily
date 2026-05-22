@@ -1,26 +1,174 @@
 @import "tailwindcss";
 
+/* ─── Editorial Color System ──────────────────────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Blacks — SpaceX depth */
+  --void:   #080808;
+  --void-2: #0D0D0B;
+  --void-3: #131210;
+  --void-4: #1B1916;
+
+  /* Rules — paper-thin dividers */
+  --rule:      rgba(255, 255, 255, 0.07);
+  --rule-gold: rgba(196, 160, 90, 0.28);
+
+  /* Ink — warm cream text (printed-on-black) */
+  --ink:   #F0EBE1;
+  --ink-2: #9C9589;
+  --ink-3: #5E584F;
+
+  /* Gold — Vanity Fair editorial */
+  --gold:       #C4A05A;
+  --gold-bright:#D4B876;
+  --gold-dim:   rgba(196, 160, 90, 0.10);
+
+  /* Crimson — editorial alert */
+  --crimson:       #B8272C;
+  --crimson-bright:#C93035;
+  --crimson-dim:   rgba(184, 39, 44, 0.10);
+
+  /* Status */
+  --positive: #3B6E50;
+  --negative:  var(--crimson);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Color utilities */
+  --color-void:          var(--void);
+  --color-void-2:        var(--void-2);
+  --color-void-3:        var(--void-3);
+  --color-void-4:        var(--void-4);
+  --color-ink:           var(--ink);
+  --color-ink-2:         var(--ink-2);
+  --color-ink-3:         var(--ink-3);
+  --color-gold:          var(--gold);
+  --color-gold-bright:   var(--gold-bright);
+  --color-crimson:       var(--crimson);
+  --color-crimson-bright:var(--crimson-bright);
+  --color-positive:      var(--positive);
+
+  /* Font stacks */
+  --font-serif: var(--font-playfair), Georgia, 'Times New Roman', serif;
+  --font-sans:  var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-mono:  var(--font-space-mono), 'Courier New', monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+/* ─── Base ────────────────────────────────────────────────────────── */
+* { box-sizing: border-box; }
+
+html { color-scheme: dark; }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--void);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Scrollbar ───────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 3px; height: 3px; }
+::-webkit-scrollbar-track { background: var(--void); }
+::-webkit-scrollbar-thumb { background: var(--void-4); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: var(--ink-3); }
+
+/* ─── Typography utilities ─────────────────────────────────────────── */
+.font-serif    { font-family: var(--font-serif); }
+.font-display  { font-family: var(--font-serif); font-weight: 700; }
+
+/* ─── Editorial card ───────────────────────────────────────────────── */
+.editorial-card {
+  background: var(--void-2);
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+}
+.editorial-card-gold {
+  background: var(--void-2);
+  border: 1px solid var(--rule);
+  border-top: 2px solid var(--gold);
+  border-radius: 2px;
+}
+.editorial-card-crimson {
+  background: var(--void-2);
+  border: 1px solid var(--rule);
+  border-top: 2px solid var(--crimson);
+  border-radius: 2px;
+}
+
+/* Section header rule */
+.section-rule {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.section-rule::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--rule-gold);
+}
+
+/* Label small-caps */
+.label-caps {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  font-family: var(--font-sans);
+}
+
+/* ─── Ticker ───────────────────────────────────────────────────────── */
+@keyframes ticker {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.ticker-animation { animation: ticker 50s linear infinite; }
+.ticker-animation:hover { animation-play-state: paused; }
+
+/* ─── Pulse ────────────────────────────────────────────────────────── */
+@keyframes pulse-editorial {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+.pulse-dot { animation: pulse-editorial 2s ease-in-out infinite; }
+
+/* ─── Blink cursor ─────────────────────────────────────────────────── */
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+.blink { animation: blink 1s step-end infinite; }
+
+/* ─── Fade in up ───────────────────────────────────────────────────── */
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Chart overrides ──────────────────────────────────────────────── */
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical   line { stroke: var(--rule) !important; }
+.recharts-text { fill: var(--ink-3) !important; font-size: 10px !important; font-family: var(--font-mono) !important; }
+
+/* ─── KaTeX ────────────────────────────────────────────────────────── */
+.katex { color: var(--ink); }
+.katex-display { overflow-x: auto; }
+
+/* ─── Selection ────────────────────────────────────────────────────── */
+::selection {
+  background: rgba(196, 160, 90, 0.25);
+  color: var(--ink);
+}
+
+/* ─── Glass (kept for backward compat, now editorial solid) ─────────── */
+.glass {
+  background: var(--void-2);
+  border: 1px solid var(--rule);
+}
+.glass-strong {
+  background: var(--void-3);
+  border: 1px solid var(--rule-gold);
+}
+
+/* ─── Gradient border (removed neon → thin gold rule) ──────────────── */
+.gradient-border {
+  border: 1px solid var(--rule-gold);
 }
