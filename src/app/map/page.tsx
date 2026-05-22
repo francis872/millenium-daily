@@ -77,21 +77,21 @@ export default function MapPage() {
                 style={{ left: `${region.x}%`, top: `${region.y}%` }}
               >
                 <motion.div
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: i * 0.1, type: 'spring' }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: i * 0.1 }}
                   className="flex flex-col items-center"
                 >
-                <div className="relative">
+                <div className="relative w-4 h-4">
                   {/* Pulse ring */}
                   {region.risk === 'critical' && (
                     <div
                       className="absolute inset-0 rounded-full animate-ping"
-                      style={{ backgroundColor: riskColors[region.risk], opacity: 0.3, transform: 'scale(2)' }}
+                      style={{ backgroundColor: riskColors[region.risk], opacity: 0.4 }}
                     />
                   )}
                   <div
-                    className="w-4 h-4 rounded-full border-2 border-slate-900 flex items-center justify-center cursor-pointer hover:scale-125 transition-transform"
+                    className="w-4 h-4 rounded-full border-2 border-slate-900 flex items-center justify-center cursor-pointer hover:scale-125 transition-transform relative z-10"
                     style={{ backgroundColor: riskColors[region.risk] }}
                     title={`${region.label}: ${region.events} events`}
                   >
